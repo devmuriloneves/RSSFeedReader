@@ -57,6 +57,7 @@
 
 - [x] T014 [P] Run the end-to-end validation steps in `specs/001-feed-subscriptions/quickstart.md` and fix API, CORS, or route issues discovered during local execution
 - [x] T015 [P] Confirm the implementation remains within the MVP scope described in `specs/001-feed-subscriptions/spec.md`, `research.md`, and `data-model.md` by checking that no feed fetching, validation, persistence, or remove flows were added
+- [x] T016 Reject whitespace-only addresses in the API and frontend, add API regression coverage, and align the feature contract and documentation
 
 ---
 

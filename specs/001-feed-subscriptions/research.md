@@ -16,7 +16,7 @@
 
 ### Address behavior
 
-- **Decision**: Reject null or empty address values; otherwise preserve the submitted string exactly and append every submission, including duplicates. Do not trim, parse, validate, fetch, or navigate to it.
+- **Decision**: Reject null, empty, or whitespace-only address values; otherwise preserve the submitted string exactly and append every submission, including duplicates. Do not trim, parse, validate, fetch, or navigate to it.
 - **Rationale**: This implements the spec's non-empty requirement and exact-display rule while keeping user input inert. Normal Razor text rendering provides output encoding.
 - **Alternatives considered**: URL validation, normalization, and de-duplication are not required and could change the text the user entered.
 

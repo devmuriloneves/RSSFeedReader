@@ -34,7 +34,7 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Subscription"
                 "400":
-                    description: The request is malformed or the address is missing or empty.
+                    description: The request is malformed or the address is missing, empty, or whitespace-only.
 components:
     schemas:
         CreateSubscriptionRequest:
@@ -46,7 +46,8 @@ components:
                 address:
                     type: string
                     minLength: 1
-                    description: Stored verbatim; no URL validation, trimming, fetching, or parsing is performed.
+                    pattern: '.*\S.*'
+                    description: Must contain at least one non-whitespace character. Stored verbatim; no URL validation, trimming, fetching, or parsing is performed.
         Subscription:
             type: object
             additionalProperties: false

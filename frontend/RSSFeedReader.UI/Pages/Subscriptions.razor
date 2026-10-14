@@ -23,7 +23,7 @@
                    class="form-control"
                    type="text"
                    autocomplete="url" />
-            <button class="btn btn-primary" type="submit" disabled="@(_isSubmitting || string.IsNullOrEmpty(_address))">
+            <button class="btn btn-primary" type="submit" disabled="@(_isSubmitting || string.IsNullOrWhiteSpace(_address))">
                 Add subscription
             </button>
         </div>
@@ -71,7 +71,7 @@
 
     private async Task AddSubscriptionAsync()
     {
-        if (_isSubmitting || string.IsNullOrEmpty(_address))
+        if (_isSubmitting || string.IsNullOrWhiteSpace(_address))
         {
             return;
         }

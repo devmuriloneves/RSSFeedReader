@@ -22,12 +22,12 @@ A user enters a feed address and adds it to their subscription list. The list im
 
 1. **Given** the subscription list is empty, **When** the user enters a feed address and adds it, **Then** the list immediately shows that address.
 2. **Given** one subscription is already listed, **When** the user adds a different feed address, **Then** the list shows both subscriptions for the current session.
-3. **Given** the user submits an empty value, **When** the add action is performed, **Then** no subscription is added.
+3. **Given** the user submits an empty or whitespace-only value, **When** the add action is performed, **Then** no subscription is added.
 
 ### Edge Cases
 
 - An entered address that is not a working RSS or Atom feed is not checked; it is shown as entered and is not fetched.
-- An empty value does not create a subscription or change the existing list.
+- An empty or whitespace-only value does not create a subscription or change the existing list.
 - Subscriptions are available only during the current app session; closing and reopening the app starts with an empty list.
 
 ## Requirements _(mandatory)_
@@ -35,10 +35,10 @@ A user enters a feed address and adds it to their subscription list. The list im
 ### Functional Requirements
 
 - **FR-001**: The app MUST let the user enter a feed address and submit it as a subscription.
-- **FR-002**: The app MUST add each non-empty submitted address to the subscription list without checking whether the address is a valid or reachable feed.
+- **FR-002**: The app MUST add each submitted address containing at least one non-whitespace character to the subscription list without checking whether the address is a valid or reachable feed.
 - **FR-003**: The app MUST update the visible subscription list immediately after an address is added and show the address as text exactly as entered.
 - **FR-004**: The app MUST allow multiple subscriptions to be added and displayed in the same session.
-- **FR-005**: The app MUST leave the subscription list unchanged when the user submits an empty value.
+- **FR-005**: The app MUST leave the subscription list unchanged when the user submits an empty or whitespace-only value.
 - **FR-006**: The app MUST keep subscriptions only for the current session; subscriptions do not need to remain after the app is closed.
 - **FR-007**: The app MUST NOT retrieve or parse feed content as part of this MVP.
 

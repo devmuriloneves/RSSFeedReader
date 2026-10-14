@@ -17,7 +17,7 @@ public sealed class SubscriptionStore
 
     public bool TryAdd(string? address, out Subscription? subscription)
     {
-        if (string.IsNullOrEmpty(address))
+        if (string.IsNullOrWhiteSpace(address))
         {
             subscription = null;
             return false;

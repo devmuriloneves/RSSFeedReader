@@ -71,6 +71,20 @@ public sealed class SubscriptionsApiTests
     }
 
     [Fact]
+    public async Task Post_rejects_whitespace_only_address_without_mutating_list()
+    {
+        using var factory = new WebApplicationFactory<Program>();
+        using var client = factory.CreateClient();
+
+        using var response = await client.PostAsJsonAsync("/api/subscriptions", new { address = "   " });
+        var subscriptions = await client.GetFromJsonAsync<Subscription[]>("/api/subscriptions");
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.NotNull(subscriptions);
+        Assert.Empty(subscriptions);
+    }
+
+    [Fact]
     public async Task Post_rejects_missing_address_without_mutating_list()
     {
         using var factory = new WebApplicationFactory<Program>();
