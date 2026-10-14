@@ -8,9 +8,9 @@
 
 **Purpose**: Initialize the solution and app structure for the MVP.
 
-- [ ] T001 Create the project structure under `backend/` and `frontend/` and add the solution entry at `RSSFeedReader.sln`
-- [ ] T002 Initialize the .NET 10 ASP.NET Core API and Blazor WebAssembly app in `backend/RSSFeedReader.Api/RSSFeedReader.Api.csproj` and `frontend/RSSFeedReader.UI/RSSFeedReader.UI.csproj`
-- [ ] T003 [P] Configure the local API base URL and CORS settings in `frontend/RSSFeedReader.UI/wwwroot/appsettings.json` and `backend/RSSFeedReader.Api/Program.cs`
+- [x] T001 Create the project structure under `backend/` and `frontend/` and add the solution entry at `RSSFeedReader.sln`
+- [x] T002 Initialize the .NET 10 ASP.NET Core API and Blazor WebAssembly app in `backend/RSSFeedReader.Api/RSSFeedReader.Api.csproj` and `frontend/RSSFeedReader.UI/RSSFeedReader.UI.csproj`
+- [x] T003 [P] Configure the local API base URL and CORS settings in `frontend/RSSFeedReader.UI/wwwroot/appsettings.json` and `backend/RSSFeedReader.Api/Program.cs`
 
 ---
 
@@ -20,9 +20,9 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T004 Implement the singleton in-memory subscription store in `backend/RSSFeedReader.Api/Subscriptions/SubscriptionStore.cs` with process-local list behavior, insertion-order retention, and empty-value rejection
-- [ ] T005 Implement the `GET /api/subscriptions` and `POST /api/subscriptions` endpoints in `backend/RSSFeedReader.Api/Program.cs` using the contract in `specs/001-feed-subscriptions/contracts/openapi.yaml`
-- [ ] T006 [P] Scaffold the API test project and add regression coverage in `backend/RSSFeedReader.Api.Tests/SubscriptionsApiTests.cs` for empty state, add/list flow, duplicates, and empty rejection
+- [x] T004 Implement the singleton in-memory subscription store in `backend/RSSFeedReader.Api/Subscriptions/SubscriptionStore.cs` with process-local list behavior, insertion-order retention, and empty-value rejection
+- [x] T005 Implement the `GET /api/subscriptions` and `POST /api/subscriptions` endpoints in `backend/RSSFeedReader.Api/Program.cs` using the contract in `specs/001-feed-subscriptions/contracts/openapi.yaml`
+- [x] T006 [P] Scaffold the API test project and add regression coverage in `backend/RSSFeedReader.Api.Tests/SubscriptionsApiTests.cs` for empty state, add/list flow, duplicates, and empty rejection
 
 **Checkpoint**: The backend contract is functional and the in-memory lifecycle is confirmed before UI implementation starts.
 
@@ -36,16 +36,16 @@
 
 ### Tests for User Story 1
 
-- [ ] T007 [P] [US1] Add API tests in `backend/RSSFeedReader.Api.Tests/SubscriptionsApiTests.cs` for the exact response behavior in `specs/001-feed-subscriptions/contracts/openapi.yaml`
-- [ ] T008 [P] [US1] Add the manual browser validation checklist in `specs/001-feed-subscriptions/quickstart.md` for the add/list flow and the empty-input rejection case
+- [x] T007 [P] [US1] Add API tests in `backend/RSSFeedReader.Api.Tests/SubscriptionsApiTests.cs` for the exact response behavior in `specs/001-feed-subscriptions/contracts/openapi.yaml`
+- [x] T008 [P] [US1] Add the manual browser validation checklist in `specs/001-feed-subscriptions/quickstart.md` for the add/list flow and the empty-input rejection case
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Complete the backend validation and response contract in `backend/RSSFeedReader.Api/Program.cs` so a non-empty `address` is stored verbatim and an empty/missing value returns `400`
-- [ ] T010 [P] [US1] Implement the frontend API client in `frontend/RSSFeedReader.UI/Services/SubscriptionsApiClient.cs` for `GET` and `POST` requests to `/api/subscriptions`
-- [ ] T011 [US1] Build the subscription form and list rendering in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor` so the user enters text, submits it, and sees the list update immediately
-- [ ] T012 [US1] Update the UI startup configuration in `frontend/RSSFeedReader.UI/Program.cs` to expose the subscription page and remove the default template navigation/pages
-- [ ] T013 [P] [US1] Verify exact text preservation and insertion order across the API and UI in `backend/RSSFeedReader.Api/Subscriptions/SubscriptionStore.cs`, `backend/RSSFeedReader.Api/Program.cs`, and `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`
+- [x] T009 [US1] Complete the backend validation and response contract in `backend/RSSFeedReader.Api/Program.cs` so a non-empty `address` is stored verbatim and an empty/missing value returns `400`
+- [x] T010 [P] [US1] Implement the frontend API client in `frontend/RSSFeedReader.UI/Services/SubscriptionsApiClient.cs` for `GET` and `POST` requests to `/api/subscriptions`
+- [x] T011 [US1] Build the subscription form and list rendering in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor` so the user enters text, submits it, and sees the list update immediately
+- [x] T012 [US1] Update the UI startup configuration in `frontend/RSSFeedReader.UI/Program.cs` to expose the subscription page and remove the default template navigation/pages
+- [x] T013 [P] [US1] Verify exact text preservation and insertion order across the API and UI in `backend/RSSFeedReader.Api/Subscriptions/SubscriptionStore.cs`, `backend/RSSFeedReader.Api/Program.cs`, and `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`
 
 **Checkpoint**: User Story 1 is complete and independently testable as a working add/list MVP in a single process session.
 
@@ -55,8 +55,8 @@
 
 **Purpose**: Final verification, cleanup, and MVP readiness checks.
 
-- [ ] T014 [P] Run the end-to-end validation steps in `specs/001-feed-subscriptions/quickstart.md` and fix API, CORS, or route issues discovered during local execution
-- [ ] T015 [P] Confirm the implementation remains within the MVP scope described in `specs/001-feed-subscriptions/spec.md`, `research.md`, and `data-model.md` by checking that no feed fetching, validation, persistence, or remove flows were added
+- [x] T014 [P] Run the end-to-end validation steps in `specs/001-feed-subscriptions/quickstart.md` and fix API, CORS, or route issues discovered during local execution
+- [x] T015 [P] Confirm the implementation remains within the MVP scope described in `specs/001-feed-subscriptions/spec.md`, `research.md`, and `data-model.md` by checking that no feed fetching, validation, persistence, or remove flows were added
 
 ---
 

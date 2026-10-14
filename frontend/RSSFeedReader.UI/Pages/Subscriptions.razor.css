@@ -1,0 +1,107 @@
+.subscription-page {
+    max-width: 54rem;
+    margin: 1rem auto;
+}
+
+.subscription-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.35rem;
+    color: #527064;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.subscription-heading h1 {
+    margin: 0;
+    color: #172822;
+    font-size: 2rem;
+    font-weight: 650;
+}
+
+.subscription-count {
+    color: #52615b;
+    white-space: nowrap;
+}
+
+.subscription-form {
+    margin-bottom: 1.5rem;
+}
+
+.subscription-form label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #263a32;
+    font-weight: 600;
+}
+
+.form-controls {
+    display: flex;
+    gap: 0.65rem;
+}
+
+.form-controls .form-control {
+    min-width: 0;
+    min-height: 2.75rem;
+}
+
+.form-controls .btn-primary {
+    flex: 0 0 auto;
+    border-color: #24654a;
+    background-color: #24654a;
+}
+
+.form-controls .btn-primary:disabled {
+    border-color: #82948a;
+    background-color: #82948a;
+}
+
+.empty-state {
+    margin: 0;
+    padding: 1.25rem 0;
+    border-top: 1px solid #d9e0dc;
+    color: #617068;
+}
+
+.subscription-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #d9e0dc;
+    list-style: none;
+}
+
+.subscription-row {
+    padding: 1rem 0;
+    border-bottom: 1px solid #d9e0dc;
+}
+
+.subscription-address {
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    color: #172822;
+}
+
+.error-message {
+    margin: 0 0 1rem;
+    color: #a3332b;
+}
+
+@media (max-width: 36rem) {
+    .subscription-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

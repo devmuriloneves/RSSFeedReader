@@ -1,0 +1,97 @@
+@page "/"
+@inject SubscriptionsApiClient ApiClient
+
+<PageTitle>Subscriptions | RSS Feed Reader</PageTitle>
+
+<section class="subscription-page">
+    <header class="subscription-heading">
+        <div>
+            <p class="eyebrow">RSS FEED READER</p>
+            <h1>Subscriptions</h1>
+        </div>
+        <span class="subscription-count">
+            @_subscriptions.Count @(_subscriptions.Count == 1 ? "subscription" : "subscriptions")
+        </span>
+    </header>
+
+    <form class="subscription-form" @onsubmit="AddSubscriptionAsync" @onsubmit:preventDefault="true">
+        <label for="subscription-address">Feed address</label>
+        <div class="form-controls">
+            <input id="subscription-address"
+                   @bind="_address"
+                   @bind:event="oninput"
+                   class="form-control"
+                   type="text"
+                   autocomplete="url" />
+            <button class="btn btn-primary" type="submit" disabled="@(_isSubmitting || string.IsNullOrEmpty(_address))">
+                Add subscription
+            </button>
+        </div>
+    </form>
+
+    @if (_errorMessage is not null)
+    {
+        <p class="error-message" role="alert">@_errorMessage</p>
+    }
+
+    @if (_subscriptions.Count == 0)
+    {
+        <p class="empty-state">No subscriptions yet.</p>
+    }
+    else
+    {
+        <ol class="subscription-list" aria-label="Subscriptions">
+            @foreach (var subscription in _subscriptions)
+            {
+                <li class="subscription-row">
+                    <span class="subscription-address">@subscription.Address</span>
+                </li>
+            }
+        </ol>
+    }
+</section>
+
+@code {
+    private string _address = string.Empty;
+    private IReadOnlyList<SubscriptionDto> _subscriptions = [];
+    private string? _errorMessage;
+    private bool _isSubmitting;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _subscriptions = await ApiClient.GetSubscriptionsAsync();
+        }
+        catch (HttpRequestException)
+        {
+            _errorMessage = "The subscriptions service is unavailable.";
+        }
+    }
+
+    private async Task AddSubscriptionAsync()
+    {
+        if (_isSubmitting || string.IsNullOrEmpty(_address))
+        {
+            return;
+        }
+
+        _isSubmitting = true;
+        _errorMessage = null;
+
+        try
+        {
+            var subscription = await ApiClient.AddSubscriptionAsync(_address);
+            _subscriptions = [.. _subscriptions, subscription];
+            _address = string.Empty;
+        }
+        catch (HttpRequestException)
+        {
+            _errorMessage = "The subscription could not be added.";
+        }
+        finally
+        {
+            _isSubmitting = false;
+        }
+    }
+}
