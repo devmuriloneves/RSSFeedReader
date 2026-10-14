@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+    title: RSS Feed Reader Subscriptions API
+    version: 1.0.0
+    description: In-memory subscription management for the MVP. Addresses are stored and returned as text; feeds are not fetched or parsed.
+servers:
+    - url: http://localhost:5151
+paths:
+    /api/subscriptions:
+        get:
+            summary: List subscriptions
+            responses:
+                "200":
+                    description: Subscriptions in insertion order for the current backend process.
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Subscription"
+        post:
+            summary: Add a subscription
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/CreateSubscriptionRequest"
+            responses:
+                "200":
+                    description: The subscription was added and is returned unchanged.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Subscription"
+                "400":
+                    description: The request is malformed or the address is missing or empty.
+components:
+    schemas:
+        CreateSubscriptionRequest:
+            type: object
+            additionalProperties: false
+            required:
+                - address
+            properties:
+                address:
+                    type: string
+                    minLength: 1
+                    description: Stored verbatim; no URL validation, trimming, fetching, or parsing is performed.
+        Subscription:
+            type: object
+            additionalProperties: false
+            required:
+                - address
+            properties:
+                address:
+                    type: string
